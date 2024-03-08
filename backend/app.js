@@ -1,11 +1,11 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 const port = 3000;
-const coursePath = '/course';
-const helmet = require('helmet');
-const cors = require('cors');
-const mysql = require('mysql2');
-require('dotenv').config();
+const coursePath = "/course";
+const helmet = require("helmet");
+const cors = require("cors");
+const mysql = require("mysql2");
+require("dotenv").config();
 
 app.use(helmet());
 app.use(cors());
@@ -13,19 +13,19 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const connection = mysql.createConnection({
-  host: '127.0.0.1',
-  user: 'root',
-  password: 'Hishintai01gate',
-  database: 'db_saitan',
+  host: "127.0.0.1",
+  user: "root",
+  password: "Hishintai01gate",
+  database: "db_saitan",
 });
 
 connection.connect((error) => {
   if (error) throw error;
-  console.log('Successfully connected to MySQL!');
+  console.log("Successfully connected to MySQL!");
 });
 
 app.get(coursePath, (req, res) => {
-  const selectQuery = 'SELECT * FROM class';
+  const selectQuery = "SELECT * FROM course";
   connection.query(selectQuery, (error, result) => {
     if (error) throw error;
     res.json(result);
@@ -44,9 +44,12 @@ app.post(coursePath, (req, res) => {
     status,
     creditsNumber,
   } = req.body;
+
+  const statusInt = status ? 1 : 0;
+
   const insertQuery = `
   INSERT INTO class (id, year, semester, day, time, class_title, category, sub_category, status, credits_number) VALUES
-    (null, '${year}', '${semester}', '${day}', '${time}', '${classTitle}', '${category}', '${subCategory}', '${status}', '${creditsNumber}')
+    (null, '${year}', '${semester}', '${day}', '${time}', '${classTitle}', '${category}', '${subCategory}', '${statusInt}', '${creditsNumber}')
   `;
   connection.query(insertQuery, (error) => {
     if (error) throw error;
