@@ -17,19 +17,20 @@ interface Course {
 }
 
 interface CalcTablesProps {
-  data: Course[];
+  course: Course[];
 }
 
-const CalcTables: React.FC<CalcTablesProps> = ({ data }) => {
+const CalcTables: React.FC<CalcTablesProps> = ({ course }) => {
   const years = [1, 2, 3, 4];
   const semesters = ["春", "秋"];
+  const checkedCourse = course.filter((item: Course) => item.status);
 
   const totalSum = () => {
-    return data
+    return checkedCourse
       .reduce((sum, item) => sum + item.creditsNumber, 0);
   }
   const countSum = (year: number, semester: string) => {
-    return data
+    return checkedCourse
       .filter(
         (item) => item.year === year + 2022 - 1 && item.semester === semester
       )
@@ -37,12 +38,12 @@ const CalcTables: React.FC<CalcTablesProps> = ({ data }) => {
   };
 
   const totalData = (category: string): number => {
-    return data
+    return checkedCourse
       .filter((item) => item.category === category)
       .reduce((sum, item) => sum + item.creditsNumber, 0);
   }
   const countData = (year: number, semester: string, subCategory: string): number => {
-    return data
+    return checkedCourse
       .filter(
         (item) =>
           item.year === year + 2022 - 1 &&

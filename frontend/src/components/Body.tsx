@@ -34,11 +34,9 @@ interface CourseDB {
 
 const Body = () => {
   const [course, setCourse] = useState<Course[]>([]);
-  const [data, setData] = useState<Course[]>([]);
 
   useEffect(() => {
     fetchCourse();
-    fetchData();
   }, []);
 
   const fetchCourse = () => {
@@ -61,29 +59,6 @@ const Body = () => {
           creditsNumber: item.credits_number,
         }));
         setCourse(mappedResult);
-      });
-  };
-
-  const fetchData = () => {
-    fetch(API_URL)
-      .then((responseData) => {
-        return responseData.json();
-      })
-      .then((result) => {
-        const mappedResult = result.map((item: CourseDB) => ({
-          id: item.id,
-          year: item.year,
-          semester: item.semester,
-          day: item.day,
-          time: item.time,
-          classTitle: item.class_title,
-          category: item.category,
-          subCategory: item.sub_category,
-          status: item.status,
-          creditsNumber: item.credits_number,
-        }));
-        const checkedData = mappedResult.filter((item: Course) => item.status);
-        setData(checkedData);
       });
   };
 
@@ -249,7 +224,7 @@ const Body = () => {
         )}
         {activeTab === 1 && (
           <div>
-            <CalcTables data={data} />
+            <CalcTables course={course} />
           </div>
         )}
       </div>
