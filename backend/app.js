@@ -65,8 +65,8 @@ app.post(coursePath, (req, res) => {
   const statusInt = status ? 1 : 0;
 
   const insertQuery = `
-  INSERT INTO course (id, year, semester, day, time, class_title, category, sub_category, status, credits_number) VALUES
-    (null, '${year}', '${semester}', '${day}', '${time}', '${classTitle}', '${category}', '${subCategory}', '${statusInt}', '${creditsNumber}')
+  INSERT INTO course (year, semester, day, time, class_title, category, sub_category, status, credits_number) VALUES
+    ('${year}', '${semester}', '${day}', '${time}', '${classTitle}', '${category}', '${subCategory}', '${statusInt}', '${creditsNumber}')
   `;
   // connection.query(insertQuery, (error) => {
   pool.query(insertQuery, (error) => {
@@ -77,7 +77,7 @@ app.post(coursePath, (req, res) => {
 
 app.put(`${coursePath}/:id`, (req, res) => {
   const requestId = Number(req.params.id);
-  const { status } = req.body;
+  const status = req.body.status ? 1 : 0;
   const updateQuery = `
     UPDATE course
     SET    status=${status}
