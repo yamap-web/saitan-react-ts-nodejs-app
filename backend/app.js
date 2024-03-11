@@ -4,7 +4,8 @@ const port = 3000;
 const coursePath = "/course";
 const helmet = require("helmet");
 const cors = require("cors");
-const mysql = require("mysql2");
+// const mysql = require("mysql2");
+const { Pool } = require("pg");
 require("dotenv").config();
 
 app.use(helmet());
@@ -12,23 +13,39 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const connection = mysql.createConnection({
-  host: "127.0.0.1",
-  user: "root",
-  password: "Hishintai01gate",
-  database: "db_saitan",
+// const connection = mysql.createConnection({
+//   host: process.env.MYSQL_HOST,
+//   user: process.env.MYSQL_USER,
+//   password: process.env.MYSQL_PASS,
+//   database: "db_saitan",
+// });
+const pool = new Pool({
+  host: process.env.PG_HOST,
+  user: process.env.PG_USER,
+  password: process.env.PG_PASS,
+  database: "saitan_db",
+  ssl: {
+    rejectUnauthorized: false,
+  },
+  max: 10,
 });
 
-connection.connect((error) => {
+// connection.connect((error) => {
+//   if (error) throw error;
+//   console.log("Successfully connected to MySQL!");
+// });
+pool.connect((error) => {
   if (error) throw error;
-  console.log("Successfully connected to MySQL!");
+  console.log("Successfully connected to PostgreSQL!");
 });
 
 app.get(coursePath, (req, res) => {
   const selectQuery = "SELECT * FROM course";
-  connection.query(selectQuery, (error, result) => {
+  // connection.query(selectQuery, (error, result) => {
+  pool.query(selectQuery, (error, result) => {
     if (error) throw error;
-    res.json(result);
+    // res.json(result);
+    res.json(result.rows);
   });
 });
 
@@ -51,7 +68,8 @@ app.post(coursePath, (req, res) => {
   INSERT INTO course (id, year, semester, day, time, class_title, category, sub_category, status, credits_number) VALUES
     (null, '${year}', '${semester}', '${day}', '${time}', '${classTitle}', '${category}', '${subCategory}', '${statusInt}', '${creditsNumber}')
   `;
-  connection.query(insertQuery, (error) => {
+  // connection.query(insertQuery, (error) => {
+  pool.query(insertQuery, (error) => {
     if (error) throw error;
     res.end();
   });
@@ -65,7 +83,8 @@ app.put(`${coursePath}/:id`, (req, res) => {
     SET    status=${status}
     WHERE  id=${requestId}
   `;
-  connection.query(updateQuery, (error) => {
+  // connection.query(updateQuery, (error) => {
+  pool.query(updateQuery, (error) => {
     if (error) throw error;
     res.end();
   });
