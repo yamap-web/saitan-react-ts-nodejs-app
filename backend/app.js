@@ -48,7 +48,7 @@ app.post(coursePath, (req, res) => {
   const statusInt = status ? 1 : 0;
 
   const insertQuery = `
-  INSERT INTO class (id, year, semester, day, time, class_title, category, sub_category, status, credits_number) VALUES
+  INSERT INTO course (id, year, semester, day, time, class_title, category, sub_category, status, credits_number) VALUES
     (null, '${year}', '${semester}', '${day}', '${time}', '${classTitle}', '${category}', '${subCategory}', '${statusInt}', '${creditsNumber}')
   `;
   connection.query(insertQuery, (error) => {

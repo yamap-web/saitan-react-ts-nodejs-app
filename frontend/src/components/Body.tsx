@@ -42,6 +42,7 @@ const Body = () => {
   }, []);
 
   const fetchCourse = () => {
+    // TODO: fetchAllCoursesに変更したい
     fetch(API_URL)
       .then((responseData) => {
         return responseData.json();

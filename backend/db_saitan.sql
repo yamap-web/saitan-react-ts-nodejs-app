@@ -1,4 +1,4 @@
-CREATE TABLE `class` (
+CREATE TABLE `course` (
    id               INT(11) AUTO_INCREMENT NOT NULL PRIMARY KEY COMMENT '授業ID',
    year             INT(11)      NOT NULL  COMMENT '授業年度',
    semester         VARCHAR(255) NOT NULL  COMMENT '授業学期',
