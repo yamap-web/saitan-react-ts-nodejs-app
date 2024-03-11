@@ -4,7 +4,7 @@ import SelectTimetable from './SelectTimetable';
 import ClassAddModal from './ClassAddModal';
 import Timetables from './Timetables';
 
-const API_URL = 'http://localhost:3000/course/';
+const API_URL = process.env.REACT_PUBLIC_API_URL!;
 
 interface Course {
   id: number;
