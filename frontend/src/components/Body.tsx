@@ -52,7 +52,7 @@ const Body = () => {
   const [selectedSemester, setSelectedSemester] = useState(semesters[0]);
 
   useEffect(() => {
-    handleFilterCourse(years[0], semesters[0]);
+    handleFilterCourse(selectedYear, selectedSemester);
   }, [course]);
 
   const addCourse = (
@@ -189,7 +189,7 @@ const Body = () => {
                 setSelectedYear={setSelectedYear}
                 selectedSemester={selectedSemester}
                 setSelectedSemester={setSelectedSemester}
-                onFilterCourse={handleFilterCourse}
+                handleFilterCourse={handleFilterCourse}
               />
               <ClassAddModal addCourse={addCourse} />
             </div>
