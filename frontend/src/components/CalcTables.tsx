@@ -20,15 +20,14 @@ interface CalcTablesProps {
   course: Course[];
 }
 
-const CalcTables: React.FC<CalcTablesProps> = ({ course }) => {
+const CalcTables = ({ course }: CalcTablesProps) => {
   const years = [1, 2, 3, 4];
   const semesters = ["春", "秋"];
   const checkedCourse = course.filter((item: Course) => item.status);
 
   const totalSum = () => {
-    return checkedCourse
-      .reduce((sum, item) => sum + item.creditsNumber, 0);
-  }
+    return checkedCourse.reduce((sum, item) => sum + item.creditsNumber, 0);
+  };
   const countSum = (year: number, semester: string) => {
     return checkedCourse
       .filter(
@@ -41,8 +40,12 @@ const CalcTables: React.FC<CalcTablesProps> = ({ course }) => {
     return checkedCourse
       .filter((item) => item.category === category)
       .reduce((sum, item) => sum + item.creditsNumber, 0);
-  }
-  const countData = (year: number, semester: string, subCategory: string): number => {
+  };
+  const countData = (
+    year: number,
+    semester: string,
+    subCategory: string
+  ): number => {
     return checkedCourse
       .filter(
         (item) =>
@@ -58,7 +61,12 @@ const CalcTables: React.FC<CalcTablesProps> = ({ course }) => {
 
   return (
     <div className="mb-20">
-      <CalcTableSum years={years} semesters={semesters} totalSum={totalSum} countSum={countSum} />
+      <CalcTableSum
+        years={years}
+        semesters={semesters}
+        totalSum={totalSum}
+        countSum={countSum}
+      />
       <CalcTableFaculty
         years={years}
         semesters={semesters}

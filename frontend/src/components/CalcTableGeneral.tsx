@@ -7,7 +7,12 @@ interface Props {
   countData: (year: number, semester: string, subCategory: string) => number;
 }
 
-const CalcTableGeneral: React.FC<Props> = ({ years, semesters, totalData, countData }) => {
+const CalcTableGeneral = ({
+  years,
+  semesters,
+  totalData,
+  countData,
+}: Props) => {
   const gradRequire = 34;
   const completedCredits = totalData("全学教育");
   const completedRatio =
@@ -27,7 +32,7 @@ const CalcTableGeneral: React.FC<Props> = ({ years, semesters, totalData, countD
         <div className="stat">
           <div
             className="stat-figure radial-progress text-accent"
-            style={{ '--value': `${completedRatio}` } as React.CSSProperties}
+            style={{ "--value": `${completedRatio}` } as React.CSSProperties}
           >
             {completedRatio}%
           </div>

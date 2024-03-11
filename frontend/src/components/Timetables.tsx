@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 interface Course {
   id: number;
@@ -29,10 +29,10 @@ interface TimetablesProps {
   ) => void;
 }
 
-const Timetables: React.FC<TimetablesProps> = ({ course, checkCourse }) => {
+const Timetables = ({ course, checkCourse }: TimetablesProps) => {
   const [pickedCourse, setPickedCourse] = useState<Course[]>([]);
-  const [modalTitle, setModalTitle] = useState('');
-  const modalFlg = document.getElementById('my_modal_2') as HTMLDialogElement;
+  const [modalTitle, setModalTitle] = useState("");
+  const modalFlg = document.getElementById("my_modal_2") as HTMLDialogElement;
 
   const handleCellClick = (day: string, time: number) => {
     const filteredCourse = course.filter(
@@ -45,13 +45,13 @@ const Timetables: React.FC<TimetablesProps> = ({ course, checkCourse }) => {
     }
   };
 
-  const days = ['月', '火', '水', '木', '金'];
+  const days = ["月", "火", "水", "木", "金"];
   const times = [1, 2, 3, 4, 5, 6];
 
   return (
     <>
-      <div className='overflow-x-auto'>
-        <table className='table table-zebra text-center table-fixed timetable-style'>
+      <div className="overflow-x-auto">
+        <table className="table table-zebra text-center table-fixed timetable-style">
           <thead>
             <tr>
               <th></th>
@@ -72,7 +72,7 @@ const Timetables: React.FC<TimetablesProps> = ({ course, checkCourse }) => {
                           item.day === day && item.time === time && item.status
                       )
                       .map((item) => (
-                        <span key={item.id} className='badge'>
+                        <span key={item.id} className="badge">
                           {item.classTitle}
                         </span>
                       ))}
@@ -85,12 +85,12 @@ const Timetables: React.FC<TimetablesProps> = ({ course, checkCourse }) => {
       </div>
 
       {/* Modal */}
-      <dialog id='my_modal_2' className='modal'>
-        <div className='modal-box w-11/12 max-w-5xl'>
-          <h3 className='font-bold text-lg'>{modalTitle}</h3>
+      <dialog id="my_modal_2" className="modal">
+        <div className="modal-box w-11/12 max-w-5xl">
+          <h3 className="font-bold text-lg">{modalTitle}</h3>
 
-          <div className='overflow-x-auto py-4'>
-            <table className='table table-zebra'>
+          <div className="overflow-x-auto py-4">
+            <table className="table table-zebra">
               <thead>
                 <tr>
                   <th></th>
@@ -105,8 +105,8 @@ const Timetables: React.FC<TimetablesProps> = ({ course, checkCourse }) => {
                     <th>
                       <label>
                         <input
-                          type='checkbox'
-                          className='checkbox'
+                          type="checkbox"
+                          className="checkbox"
                           checked={item.status}
                           onChange={() => {
                             checkCourse(
@@ -136,7 +136,7 @@ const Timetables: React.FC<TimetablesProps> = ({ course, checkCourse }) => {
           </div>
         </div>
 
-        <form method='dialog' className='modal-backdrop'>
+        <form method="dialog" className="modal-backdrop">
           <button></button>
         </form>
       </dialog>

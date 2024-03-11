@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface Props {
   years: number[];
@@ -7,47 +7,52 @@ interface Props {
   countData: (year: number, semester: string, subCategory: string) => number;
 }
 
-const CalcTableFaculty: React.FC<Props> = ({ years, semesters, totalData, countData }) => {
+const CalcTableFaculty = ({
+  years,
+  semesters,
+  totalData,
+  countData,
+}: Props) => {
   const gradRequire = 90;
-  const completedCredits = totalData('学部教育');
+  const completedCredits = totalData("学部教育");
   const completedRatio =
     Math.round((completedCredits / gradRequire) * 100 * 10) / 10;
   const subCategoriesFaculty = [
-    '経営学リテラシー',
-    '専門基礎',
-    '専門基幹',
-    '法律',
-    'グローバルビジネス',
-    '経営学部',
-    '経済学部',
-    '博士課程前期',
-    '横浜市内大学単位互換',
-    '国際交流',
-    'インターン',
-    'ゼミナール',
+    "経営学リテラシー",
+    "専門基礎",
+    "専門基幹",
+    "法律",
+    "グローバルビジネス",
+    "経営学部",
+    "経済学部",
+    "博士課程前期",
+    "横浜市内大学単位互換",
+    "国際交流",
+    "インターン",
+    "ゼミナール",
   ];
 
   return (
-    <div className='m-2'>
-      <div className='stats shadow my-4'>
-        <div className='stat'>
+    <div className="m-2">
+      <div className="stats shadow my-4">
+        <div className="stat">
           <div
-            className='stat-figure radial-progress text-secondary'
-            style={{ '--value': `${completedRatio}` } as React.CSSProperties}
+            className="stat-figure radial-progress text-secondary"
+            style={{ "--value": `${completedRatio}` } as React.CSSProperties}
           >
             {completedRatio}%
           </div>
-          <div className='stat-title'>学部教育科目</div>
-          <div className='stat-value text-secondary'>
+          <div className="stat-title">学部教育科目</div>
+          <div className="stat-value text-secondary">
             {completedCredits}
-            <span className='text-xl'> 単位</span>
+            <span className="text-xl"> 単位</span>
           </div>
-          <div className='stat-desc'>/ 卒業要件{gradRequire}単位</div>
+          <div className="stat-desc">/ 卒業要件{gradRequire}単位</div>
         </div>
       </div>
 
-      <div className='overflow-x-auto'>
-        <table className='table table-zebra'>
+      <div className="overflow-x-auto">
+        <table className="table table-zebra">
           <thead>
             <tr>
               <th></th>
@@ -82,4 +87,3 @@ const CalcTableFaculty: React.FC<Props> = ({ years, semesters, totalData, countD
 };
 
 export default CalcTableFaculty;
-

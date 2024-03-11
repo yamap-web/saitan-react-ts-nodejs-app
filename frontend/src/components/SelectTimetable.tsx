@@ -8,8 +8,8 @@ interface Props {
   selectedSemester: string;
   setSelectedSemester: (semester: string) => void;
   onFilterCourse: (year: number, semester: string) => void;
-} 
-const SelectTimetable: React.FC<Props> = ({
+}
+const SelectTimetable = ({
   years,
   semesters,
   selectedYear,
@@ -17,7 +17,7 @@ const SelectTimetable: React.FC<Props> = ({
   selectedSemester,
   setSelectedSemester,
   onFilterCourse,
-}) => {
+}: Props) => {
   const handleFilter = () => {
     onFilterCourse(selectedYear, selectedSemester);
   };
