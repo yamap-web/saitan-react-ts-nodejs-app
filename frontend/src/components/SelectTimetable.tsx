@@ -9,6 +9,7 @@ interface Props {
   setSelectedSemester: (semester: string) => void;
   onFilterCourse: (year: number, semester: string) => void;
 }
+
 const SelectTimetable = ({
   years,
   semesters,
@@ -18,7 +19,7 @@ const SelectTimetable = ({
   setSelectedSemester,
   onFilterCourse,
 }: Props) => {
-  
+
   const handleFilter = () => {
     onFilterCourse(selectedYear, selectedSemester);
   };
