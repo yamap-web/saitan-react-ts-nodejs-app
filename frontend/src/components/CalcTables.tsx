@@ -1,4 +1,5 @@
 import React from "react";
+import type { Course } from "../types/interface";
 import CalcTableSum from "./CalcTableSum";
 import CalcTableFaculty from "./CalcTableFaculty";
 import CalcTableGeneral from "./CalcTableGeneral";

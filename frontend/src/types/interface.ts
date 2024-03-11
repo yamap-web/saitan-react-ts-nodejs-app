@@ -1,4 +1,4 @@
-interface Course {
+export interface Course {
   id: number;
   year: number;
   semester: string;
@@ -11,7 +11,7 @@ interface Course {
   creditsNumber: number;
 }
 
-interface CourseDB {
+export interface CourseDB {
   id: number;
   year: number;
   semester: string;

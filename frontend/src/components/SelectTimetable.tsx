@@ -18,6 +18,7 @@ const SelectTimetable = ({
   setSelectedSemester,
   onFilterCourse,
 }: Props) => {
+  
   const handleFilter = () => {
     onFilterCourse(selectedYear, selectedSemester);
   };

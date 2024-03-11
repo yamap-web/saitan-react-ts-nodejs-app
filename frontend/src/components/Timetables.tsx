@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import type { Course } from "../types/interface";
 
 interface Props {
   course: Course[];
