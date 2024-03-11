@@ -1,19 +1,6 @@
 import React, { useState } from "react";
 
-interface Course {
-  id: number;
-  year: number;
-  semester: string;
-  day: string;
-  time: number;
-  classTitle: string;
-  category: string;
-  subCategory: string;
-  status: boolean;
-  creditsNumber: number;
-}
-
-interface TimetablesProps {
+interface Props {
   course: Course[];
   checkCourse: (
     id: number,
@@ -29,7 +16,7 @@ interface TimetablesProps {
   ) => void;
 }
 
-const Timetables = ({ course, checkCourse }: TimetablesProps) => {
+const Timetables = ({ course, checkCourse }: Props) => {
   const [pickedCourse, setPickedCourse] = useState<Course[]>([]);
   const [modalTitle, setModalTitle] = useState("");
   const modalFlg = document.getElementById("my_modal_2") as HTMLDialogElement;

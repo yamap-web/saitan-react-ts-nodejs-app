@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-interface ClassAddModalProps {
+interface Props {
   addCourse: (
     id: number,
     year: number,
@@ -15,7 +15,7 @@ interface ClassAddModalProps {
   ) => void;
 }
 
-const ClassAddModal = ({ addCourse }: ClassAddModalProps) => {
+const ClassAddModal = ({ addCourse }: Props) => {
   const years = [2022, 2023, 2024, 2025];
   const semesters = ["春", "秋"];
   const days = ["月", "火", "水", "木", "金"];

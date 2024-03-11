@@ -3,24 +3,11 @@ import CalcTableSum from "./CalcTableSum";
 import CalcTableFaculty from "./CalcTableFaculty";
 import CalcTableGeneral from "./CalcTableGeneral";
 
-interface Course {
-  id: number;
-  year: number;
-  semester: string;
-  day: string;
-  time: number;
-  classTitle: string;
-  category: string;
-  subCategory: string;
-  status: boolean;
-  creditsNumber: number;
-}
-
-interface CalcTablesProps {
+interface Props {
   course: Course[];
 }
 
-const CalcTables = ({ course }: CalcTablesProps) => {
+const CalcTables = ({ course }: Props) => {
   const years = [1, 2, 3, 4];
   const semesters = ["春", "秋"];
   const checkedCourse = course.filter((item: Course) => item.status);
